@@ -5,6 +5,8 @@
 		var sceneV = 0;
 		var state = false;
 		var loopGame;
+		var player0;
+		var player1;
 		var plataforms = [];
 		var enemys = [];
 		var music = new Audio();
@@ -52,14 +54,16 @@
 		function draw(){
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			//drawPlataform();
-			drawPlayer();
+			player0.drawPlayer();
+			player1.drawPlayer();
 		}
 
 		function iA(){
 		}
 
 		function refresh(){
-			refreshPlayer();//controll listener
+			player0.refreshPlayerKey();//controll listener
+			player1.refreshPlayerKey();
 		}
 
 		function frame(){

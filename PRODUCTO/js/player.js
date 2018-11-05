@@ -1,11 +1,5 @@
-
 		//PLAYER VARIABLE
-		var px; //position X
-		var py;	//position Y
-		var pws;  //player width size
-		var phs;  //player width size
 		var pd = true; // player direction false --> left true --> right
-		var pv = 0.8; // player velocity
 		var pc = "black";
 
 		var moveKeysArray = new Array();
@@ -16,65 +10,95 @@
 
 		//FUNCTION PLAYER
 
-		function CreatePlayer(px, py, pws, phs){ // PLataform Constructor
+		function Player(pId, px, py, pws, phs, pv){ // PLataform Constructor
+			this.pId = pId;
 			this.px = px;
 			this.py = py;
 			this.pws = pws;
 			this.phs = phs;
+			this.pv = pv;
 		}
+		
 
-
-		function drawPlayer(){
+		Player.prototype.drawPlayer = function() {
 			if (pd && moveKeysArray.length == 0) { // image change with player direction
 					//image.src = 'img/player/playerR.png';
 			}else if (!pd && moveKeysArray.length == 0){
 					//image.src = 'img/player/playerL.png';
 			}else{
-
+				
 			}
-			ctx.fillRect(px, py, pws, phs);
+			ctx.fillRect(this.px, this.py, this.pws, this.phs);
 		}
 
 
 
-		function refreshPlayer(){
-			window.addEventListener("keydown", saveMoveKey, true);
-			window.addEventListener("keyup", deleteMoveKey, true);
-			keysPlayer(); //detect keys in refresh
+		Player.prototype.refreshPlayerKey = function() {
+			window.addEventListener("keydown", this.saveMoveKey, true);
+			window.addEventListener("keyup", this.deleteMoveKey, true);
+			this.keysPlayer(); //detect keys in refresh
 		}
 
-		function saveMoveKey(e){
+		Player.prototype.saveMoveKey = function (e){
 			if (moveKeysArray.indexOf(e.keyCode) == -1) {
 				moveKeysArray.push(e.keyCode);
 			}
 		}
 
-		function deleteMoveKey(e){
+		Player.prototype.deleteMoveKey = function (e){
 			if (moveKeysArray.indexOf(e.keyCode) !== -1) {
 				moveKeysArray.splice(moveKeysArray.indexOf(e.keyCode), 1);
 			}
 		}
 
-		function keysPlayer(){
-			if (moveKeysArray != null){
-				if (moveKeysArray.indexOf(87) !== -1) {
-					py = py - pv;
-				}
-				if (moveKeysArray.indexOf(83) !== -1) {
-					py = py + pv;
-				}
-				if (moveKeysArray.indexOf(65) !== -1) {
-					px = px - pv;
-					pd = false; //change player Img
-					if (animationStatus == false) {
-						animatePlayer(65);
+		Player.prototype.keysPlayer = function (){
+			if (this.pId == 0) {
+				if (moveKeysArray != null){
+					if (moveKeysArray.indexOf(87) !== -1) {
+						this.py = this.py - this.pv;
+					}
+					if (moveKeysArray.indexOf(83) !== -1) {
+						this.py = this.py + this.pv;
+					}
+					if (moveKeysArray.indexOf(65) !== -1) {
+						this.px = this.px - this.pv;
+						this.pd = false; //change player Img
+						if (animationStatus == false) {
+							animatePlayer(65);
+						}
+					}
+					if (moveKeysArray.indexOf(68) !== -1) {
+									console.log(this.px);
+						this.px = this.px + this.pv;
+						this.pd = true;
+						/*if (animationStatus == false) {
+							this.animatePlayer(68);
+						}*/
 					}
 				}
-				if (moveKeysArray.indexOf(68) !== -1) {
-					px = px + pv;
-					pd = true;
-					if (animationStatus == false) {
-						animatePlayer(68);
+			}else if(this.pId == 1){
+				console.log(moveKeysArray);
+				if (moveKeysArray != null){
+					if (moveKeysArray.indexOf(38) !== -1) {
+						this.py = this.py - this.pv;
+					}
+					if (moveKeysArray.indexOf(40) !== -1) {
+						this.py = this.py + this.pv;
+					}
+					if (moveKeysArray.indexOf(37) !== -1) {
+						this.px = this.px - this.pv;
+						this.pd = false; //change player Img
+						if (animationStatus == false) {
+							animatePlayer(65);
+						}
+					}
+					if (moveKeysArray.indexOf(39) !== -1) {
+									console.log(this.px);
+						this.px = this.px + this.pv;
+						this.pd = true;
+						/*if (animationStatus == false) {
+							this.animatePlayer(68);
+						}*/
 					}
 				}
 			}

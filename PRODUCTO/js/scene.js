@@ -2,7 +2,9 @@ function scene0(){
 			//loadImage();
 			//clearScene();//Clear New Scene
 			//create Player
-			var player = CreatePlayer(0, 30, 30, 30);
+			player0 = new Player(0, 0, 30, 30, 30, 0.8);
+			player1 = new Player(1, 200, 30, 30, 30, 0.8);
+
 
 			//create plataforms
 			/*var plataform0 = new CreatePlataform(canvas.width/10, canvas.height/1.1, canvas.width/20, canvas.width/40);
