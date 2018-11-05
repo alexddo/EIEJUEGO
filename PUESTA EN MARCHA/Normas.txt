@@ -1,0 +1,13 @@
+NORMAS:
+1. Colaborar.
+2. Asistir al menos a 1 reunión mensual.
+3. Comunicar cualquier sugerencia al Director.
+
+
+NORMAS DE PROGRAMACIÓN:
+1. No sobreescribir funciones ajenas.
+2. Utilizar 
+camelCase -> variables
+camelCase -> variables
+CamelCase Create* -> constructores
+3. Comentar todo lo posible
